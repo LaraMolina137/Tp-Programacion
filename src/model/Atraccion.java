@@ -29,10 +29,6 @@ public class Atraccion {
 	            return resultado;
 	        }
 	    };
-	
-	public Atraccion(final String nombre) {
-		this.nombre = nombre;
-	}
 
 	public String getNombre() {
 		return nombre;
@@ -56,10 +52,6 @@ public class Atraccion {
 
 	public TipoAtraccion getTipo() {
 		return tipo;
-	}
-	
-	public boolean validarCupo() {
-		return cupo - 1 >= 0;
 	}
 	
 	public boolean hayCupos() {

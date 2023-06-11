@@ -1,11 +1,19 @@
 package model;
 
+import java.util.List;
+
 public class PromocionAbsoluta implements Promocion{
 
-	@Override
-	public void aplicarDescuento() {
-		// TODO Auto-generated method stub
-		
+	private int valorAbsoluto;
+	
+	public PromocionAbsoluta(int valorAbsoluto) {
+		this.valorAbsoluto = valorAbsoluto;
 	}
 
+	@Override
+	public int aplicarDescuento(List<Atraccion> atracciones) {
+		return valorAbsoluto;
+	}
+	
+	
 }

@@ -19,6 +19,7 @@ public class SistemaTurismo {
 		for (Usuario usuario : usuarios)
 		{
 			System.out.println("Nombre del visitante: " + usuario.getNombre());
+			System.out.println("");
 			Sugerencia.sugerir(usuario, paquetes, atracciones);
 			
 			generarResumen(usuario);
@@ -37,12 +38,13 @@ public class SistemaTurismo {
 		for (Atraccion atraccion : usuario.getItinerario())
 		{
 			System.out.println("\t- " + atraccion.getNombre());
-			costoTotalItinerario =+ atraccion.getCosto();
-			duracionTotalItinerario =+ atraccion.getTiempoEnRecorrer();
+			costoTotalItinerario =  costoTotalItinerario + atraccion.getCosto();
+			duracionTotalItinerario =  duracionTotalItinerario + atraccion.getTiempoEnRecorrer();
 		}
 		
-		System.out.println("Total de horas: " + duracionTotalItinerario);
 		System.out.println("Total de monedas: " + costoTotalItinerario);
+		System.out.println("Total de horas: " + duracionTotalItinerario);
+		System.out.println("-------------------------------------------------------------------");
 	}
 	
 	private static void escribirResumen(String nombreArchivo, Usuario usuario)

@@ -1,32 +1,17 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import tipo.TipoAtraccion;
-import tipo.TipoPromocion;
 
 public class Paquete {
 	private TipoAtraccion nombre;
-	private TipoPromocion tipo;
 	private List<Atraccion> atracciones;
+	private Promocion promocion;
 
-	public Paquete(TipoAtraccion nombre, List<String> nombresAtracciones, TipoPromocion tipo,
-			List<Atraccion> atracciones) {
+	public Paquete(TipoAtraccion nombre, List<Atraccion> atracciones, Promocion promocion) {
 		this.nombre = nombre;
-		this.tipo = tipo;
-		cargaAtracciones(atracciones, nombresAtracciones);
-	}
-
-	private void cargaAtracciones(final List<Atraccion> todasAtracciones, final List<String> nombresAtracciones) {
-		atracciones = new ArrayList<>();
-		for (Atraccion atraccion : todasAtracciones) {
-			for (String nombreAtraccion : nombresAtracciones) {
-				if (atraccion.getNombre().equals(nombreAtraccion)) {
-					atracciones.add(atraccion);
-				}
-			}
-		}
+		this.promocion = promocion;
+		this.atracciones = atracciones;
 	}
 
 	public float calcularDuracion() {
@@ -44,6 +29,10 @@ public class Paquete {
 			costoTotal += atraccion.getCosto();
 		}
 		return costoTotal;
+	}
+	
+	public int calcularCostoConDescuento() {
+		return promocion.aplicarDescuento(atracciones);
 	}
 
 	public TipoAtraccion getNombre() {
@@ -66,16 +55,20 @@ public class Paquete {
 		}
 		return true;
 	}
-	
-	
-
-	public TipoPromocion getTipo() {
-		return tipo;
-	}
 
 	@Override
 	public String toString() {
-		return "Paquete [nombre=" + nombre + ", nombresAtracciones=" + atracciones + ", tipo=" + tipo + "]";
+		String nombresAtracciones = "";
+		
+		for (Atraccion atraccion : atracciones) {
+			nombresAtracciones += atraccion.getNombre() + ", " ;
+			
+		}
+		
+		nombresAtracciones = nombresAtracciones.substring(0, nombresAtracciones.length()-2);
+	
+		return "[ " + nombresAtracciones + " ]";
 	}
+	
 
 }

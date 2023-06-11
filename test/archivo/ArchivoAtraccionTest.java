@@ -15,7 +15,7 @@ class ArchivoAtraccionTest {
 	void testAtraccionListSize() throws Exception {		
 		
 		int expectedSize = 8;
-		final List<Atraccion> resultList = ArchivoAtraccion.leerArchivo("atraccion");
+		final List<Atraccion> resultList = ArchivoAtraccion.leerArchivo("atraccionTest");
 			
 		int actualSize = resultList.size();
 

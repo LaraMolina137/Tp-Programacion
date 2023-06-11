@@ -52,9 +52,8 @@ public class Sugerencia {
 			for(Paquete paquete : paquetes) {
 				if(paquete.hayCuposEnPaquete() 
 					&& !usuario.algunaAtraccionEstaEnItinerario(paquete)
-					&& usuario.alcanzaTiempoYCosto(paquete.calcularDuracion(), paquete.calcularCosto()))
+					&& usuario.alcanzaTiempoYCosto(paquete.calcularDuracion(), paquete.calcularCostoConDescuento()))
 				{
-				
 					if(sugerirPaquete(paquete)) {
 						System.out.println("Aceptada!");
 						usuario.agregarPaqueteAlItinerario(paquete);
@@ -81,20 +80,22 @@ public class Sugerencia {
 						usuario.agregarAtraccionAlItinerario(atraccion);
 					}
 					
+					System.out.println("-------------------------------------------------------------------");
+					System.out.println("");
+					
 				}
 			}
 		}
 
 		private static boolean sugerirPaquete(final Paquete paquete) {
-			try (Scanner scanner = new Scanner(System.in)) {
-				
 				System.out.println("Promocion: ");
-				System.out.println("-Atracciones incluidas: " + paquete.getAtracciones());
+				System.out.println("-Atracciones incluidas: " + paquete.toString());
 				System.out.println("-Duracion: " + paquete.calcularDuracion());
 				System.out.println("-Precio original: $" + paquete.calcularCosto());
-				System.out.println("-Precio con descuento: $" + paquete.calcularCosto());
+				System.out.println("-Precio con descuento: $" + paquete.calcularCostoConDescuento());
 				System.out.println("");
 
+				Scanner scanner = new Scanner(System.in);
 				String respuesta;
 
 				do
@@ -105,11 +106,9 @@ public class Sugerencia {
 				
 				return respuesta.equalsIgnoreCase("S");
 			}
-
-		}
 	
 		private static boolean sugerirAtraccion(final Atraccion atraccion) {
-			try (Scanner scanner = new Scanner(System.in)) {
+			
 				System.out.println("Atracción: ");
 				System.out.println("Nombre: [" + atraccion.getNombre() + "]");
 				System.out.println("-Precio: " + atraccion.getCosto());
@@ -117,15 +116,16 @@ public class Sugerencia {
 				System.out.println("");
 
 				String respuesta;
-
+				Scanner scanner = new Scanner(System.in);
 				do
 				{
 					System.out.println("Acepta sugerencia? Ingrese S o N");
 					respuesta = scanner.nextLine();
 				} while (!respuesta.toUpperCase().equals("S") && !respuesta.toUpperCase().equals("N"));
 
+				//scanner.close();
 				return respuesta.equalsIgnoreCase("S");
-			}
+			
 		}
 	
 }

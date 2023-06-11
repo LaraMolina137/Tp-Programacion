@@ -1,6 +1,8 @@
 package model;
 
+import java.util.List;
+
 public interface Promocion {
 	
-	public void aplicarDescuento();
+	public int aplicarDescuento(List<Atraccion> atracciones);
 }

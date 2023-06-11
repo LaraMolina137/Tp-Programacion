@@ -15,7 +15,7 @@ class ArchivoUsuarioTest {
 	void testUsuarioListSize() throws Exception {		
 		
 		int expectedSize = 3;
-		final List<Usuario> resultList = ArchivoUsuario.leerArchivo("usuario");
+		final List<Usuario> resultList = ArchivoUsuario.leerArchivo("usuarioTest");
 			
 		int actualSize = resultList.size();
 
@@ -31,7 +31,7 @@ class ArchivoUsuarioTest {
 				new Usuario("Laura Jiménez", TipoPerfil.GALARDIEL.getPreferencia(), TipoPerfil.GALARDIEL.getPresupuesto(), TipoPerfil.GALARDIEL.getTiempo())
 		);
         
-		final List<Usuario> resultList = ArchivoUsuario.leerArchivo("usuario");
+		final List<Usuario> resultList = ArchivoUsuario.leerArchivo("usuarioTest");
 			
 		for (int i = 0; i < expectedList.size(); i++) {
             Usuario expected = expectedList.get(i);

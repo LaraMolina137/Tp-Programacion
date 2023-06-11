@@ -1,16 +1,23 @@
 package model;
 
-public class PromocionPorcentaje implements Promocion{
+import java.util.List;
 
+public class PromocionPorcentaje implements Promocion{
+	
+	private int valorPorcentaje;
+
+	public PromocionPorcentaje(int valorPorcentaje) {
+		this.valorPorcentaje = valorPorcentaje;
+	}
+	
 	@Override
-	public void aplicarDescuento() {
-		// TODO Auto-generated method stub
+	public int aplicarDescuento(List<Atraccion> atracciones) {
+		int costoTotal = 0;
+		for (Atraccion atraccion : atracciones) {
+			costoTotal += atraccion.getCosto();
+		}
 		
+		return (int) (costoTotal - (costoTotal * (valorPorcentaje/100.0f)));
 	}
 
 }
-
-
-//○ Promociones porcentuales (X % de descuento en el costo total)
-//○ Promociones absolutas ($ X por todo el paquete)
-//○ Promociones A x B (si el usuario compra A,B,C entonces tiene gratis D)

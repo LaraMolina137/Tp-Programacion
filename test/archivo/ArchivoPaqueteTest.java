@@ -2,70 +2,86 @@ package archivo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import model.Atraccion;
 import model.Paquete;
+import model.PromocionAXB;
+import model.PromocionAbsoluta;
+import model.PromocionPorcentaje;
 import tipo.TipoAtraccion;
-import tipo.TipoPromocion;
 
 class ArchivoPaqueteTest {
+	private static final List<Atraccion> EXPECTED_ATRACCIONES = List.of( 
+			new Atraccion("Moria", 10, 2, 6, TipoAtraccion.AVENTURA), 
+			new Atraccion("Minas Tirith", 5, (float) 2.5, 25, TipoAtraccion.PAISAJE),
+			new Atraccion("La Comarca", 3, (float) 6.5, 150, TipoAtraccion.DEGUSTACION),
+			new Atraccion("Mordor", 25, 3, 4, TipoAtraccion.AVENTURA),
+	        new Atraccion("Abismo de Helm", 5, 2, 15, TipoAtraccion.PAISAJE),
+	        new Atraccion("Lothlorien", 35, 1, 30, TipoAtraccion.DEGUSTACION),
+	        new Atraccion("Erebor", 12, 3, 32, TipoAtraccion.PAISAJE),
+	        new Atraccion("Bosque Negro", 3, 4, 12, TipoAtraccion.AVENTURA));
 	
+	private static final List<Paquete> EXPECTED_PAQUETES = List.of(
+			new Paquete(
+					TipoAtraccion.AVENTURA, 
+					List.of(
+							new Atraccion("Bosque Negro", 3, 4, 12, TipoAtraccion.AVENTURA),
+							new Atraccion("Mordor", 25, 3, 4, TipoAtraccion.AVENTURA)
+							),
+					new PromocionPorcentaje(20)
+					),
+			
+			new Paquete(
+					TipoAtraccion.DEGUSTACION, 
+					List.of(
+							new Atraccion("Lothlorien", 35, 1, 30, TipoAtraccion.DEGUSTACION),
+							new Atraccion("La Comarca", 3, (float) 6.5, 150, TipoAtraccion.DEGUSTACION)
+							),
+					new PromocionAbsoluta(36)
+					),
+			new Paquete(
+					TipoAtraccion.PAISAJE, 
+					List.of(
+							new Atraccion("Minas Tirith", 5, (float) 2.5, 25, TipoAtraccion.PAISAJE),
+							new Atraccion("Abismo de Helm", 5, 2, 15, TipoAtraccion.PAISAJE)
+							),
+					new PromocionAXB(new Atraccion("Erebor", 12, 3, 32, TipoAtraccion.PAISAJE))
+					)
+			);
 	@Test
 	void testPaqueteListSize() throws Exception {		
-		List<Atraccion> atracciones = List.of( 
-				new Atraccion("Moria", 10, 2, 6, TipoAtraccion.AVENTURA), 
-				new Atraccion("Minas Tirith", 5, (float) 2.5, 25, TipoAtraccion.PAISAJE),
-				new Atraccion("La Comarca", 3, (float) 6.5, 150, TipoAtraccion.DEGUSTACION),
-				new Atraccion("Mordor", 25, 3, 4, TipoAtraccion.AVENTURA),
-		        new Atraccion("Abismo de Helm", 5, 2, 15, TipoAtraccion.PAISAJE),
-		        new Atraccion("Lothlorien", 35, 1, 30, TipoAtraccion.DEGUSTACION),
-		        new Atraccion("Erebor", 12, 3, 32, TipoAtraccion.PAISAJE),
-		        new Atraccion("Bosque Negro", 3, 4, 12, TipoAtraccion.AVENTURA));
-		
-		int expectedSize = 3;
-		final List<Paquete> resultList = ArchivoPaquete.leerArchivo("paquete", atracciones);
+		final List<Paquete> resultList = ArchivoPaquete.leerArchivo("paqueteTest", EXPECTED_ATRACCIONES);
 			
 		int actualSize = resultList.size();
-
+		int expectedSize = EXPECTED_PAQUETES.size();
+		
 		assertEquals(expectedSize, actualSize);
 	}
 
 	@Test
-	void testReadFile() throws Exception {	
-		List<Atraccion> atracciones = List.of( 
-				new Atraccion("Moria", 10, 2, 6, TipoAtraccion.AVENTURA), 
-				new Atraccion("Minas Tirith", 5, (float) 2.5, 25, TipoAtraccion.PAISAJE),
-				new Atraccion("La Comarca", 3, (float) 6.5, 150, TipoAtraccion.DEGUSTACION),
-				new Atraccion("Mordor", 25, 3, 4, TipoAtraccion.AVENTURA),
-		        new Atraccion("Abismo de Helm", 5, 2, 15, TipoAtraccion.PAISAJE),
-		        new Atraccion("Lothlorien", 35, 1, 30, TipoAtraccion.DEGUSTACION),
-		        new Atraccion("Erebor", 12, 3, 32, TipoAtraccion.PAISAJE),
-		        new Atraccion("Bosque Negro", 3, 4, 12, TipoAtraccion.AVENTURA));
-		List<Paquete> expectedList = List.of(
-			new Paquete(TipoAtraccion.AVENTURA, new ArrayList<String>(List.of("Bosque Negro","Mordor")), TipoPromocion.PORCENTAJE, atracciones ),
-			new Paquete(TipoAtraccion.DEGUSTACION, new ArrayList<String>(List.of("Lothlorien","La Comarca")), TipoPromocion.ABSOLUTO, atracciones ),
-			new Paquete(TipoAtraccion.PAISAJE, new ArrayList<String>(List.of("Minas Tirith","Abismo de Helm")), TipoPromocion.AXB, atracciones )
-		);
-        
-		final List<Paquete> resultList = ArchivoPaquete.leerArchivo("paquete",atracciones);
-			
-		for (int i = 0; i < expectedList.size(); i++) {
-            Paquete expected = expectedList.get(i);
+	void testReadFile() throws Exception {
+		final List<Paquete> resultList = ArchivoPaquete.leerArchivo("paqueteTest", EXPECTED_ATRACCIONES);
+		
+		
+		for (int i = 0; i < EXPECTED_PAQUETES.size(); i++) {
+            Paquete expected = EXPECTED_PAQUETES.get(i);
             Paquete actual = resultList.get(i);
 
             assertEquals(expected.getNombre(), actual.getNombre());
-            assertEquals(expected.getTipo(), actual.getTipo());
             
             for (int j = 0; j < expected.getAtracciones().size(); j++) {
 				Atraccion atraccionExpected = expected.getAtracciones().get(j);
 				Atraccion atraccionActual = actual.getAtracciones().get(j);
 				
 				assertEquals(atraccionExpected.getNombre(), atraccionActual.getNombre());
-			}
+				assertEquals(atraccionExpected.getCosto(), atraccionActual.getCosto());
+				assertEquals(atraccionExpected.getCupo(), atraccionActual.getCupo());
+				assertEquals(atraccionExpected.getTiempoEnRecorrer(), atraccionActual.getTiempoEnRecorrer());
+				assertEquals(atraccionExpected.getTipo(), atraccionActual.getTipo());
+            }
         }
 	
 	}

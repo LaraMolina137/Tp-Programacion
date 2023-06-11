@@ -9,6 +9,10 @@ import java.util.Scanner;
 
 import model.Atraccion;
 import model.Paquete;
+import model.Promocion;
+import model.PromocionAXB;
+import model.PromocionAbsoluta;
+import model.PromocionPorcentaje;
 import tipo.TipoAtraccion;
 import tipo.TipoPromocion;
 
@@ -25,21 +29,27 @@ class ArchivoPaquete {
 			scanner.useLocale(new Locale("es_AR"));
 
 			while (scanner.hasNextLine()) {
-				nombresAtracciones = new ArrayList<>();
+				nombresAtracciones = new ArrayList<>();				
 			    String linea = scanner.nextLine();
 
 				Scanner lineaScanner = new Scanner(linea);
 				lineaScanner.useDelimiter(",\\s*");
 				
 				TipoAtraccion nombre = TipoAtraccion.valueOf(lineaScanner.next().toUpperCase());
-				TipoPromocion tipo = TipoPromocion.valueOf(lineaScanner.next().toUpperCase().trim());
+				String nombrePromocion =lineaScanner.next();						
 				String[] nombresAtraccion = lineaScanner.next().split("-");
 				for (String atraccion : nombresAtraccion) {
 					nombresAtracciones.add(atraccion.trim());
 				}
-				String valor = lineaScanner.next();
+				
+				List<Atraccion> atraccionesPaquete = filtrarAtracciones(atracciones, nombresAtracciones);
 
-				Paquete paquete = new Paquete(nombre, nombresAtracciones, tipo, atracciones);
+				String valor = lineaScanner.next();
+				
+				Promocion promocion = crearPromocion(nombrePromocion, valor, atracciones); 
+
+				Paquete paquete = new Paquete(nombre, atraccionesPaquete, promocion);
+				
 				paquetes.add(paquete);
 
 				lineaScanner.close();
@@ -52,5 +62,41 @@ class ArchivoPaquete {
 		}
 
 		return paquetes;
+	}
+	
+	private static List<Atraccion> filtrarAtracciones(final List<Atraccion> todasAtracciones, final List<String> nombresAtracciones) {
+		List<Atraccion> atracciones = new ArrayList<>();
+		for (String nombreAtraccion : nombresAtracciones) {
+			for (Atraccion atraccion : todasAtracciones) {
+				if (atraccion.getNombre().equals(nombreAtraccion)) {
+					atracciones.add(atraccion);
+				}
+			}
+		}
+		
+		return atracciones;
+	}
+	
+	private static Promocion crearPromocion(String nombrePromocion, String valor, List<Atraccion> atracciones) throws Exception {
+		if(TipoPromocion.PORCENTAJE.esPromocion(nombrePromocion))
+			return new PromocionPorcentaje(Integer.parseInt(valor));
+		if(TipoPromocion.ABSOLUTO.esPromocion(nombrePromocion))
+			return new PromocionAbsoluta(Integer.parseInt(valor));
+		if(TipoPromocion.AXB.esPromocion(nombrePromocion)) {
+			Atraccion atraccion = buscarAtraccion(atracciones, valor);
+			return new PromocionAXB(atraccion);
+		}
+		throw new Exception("No coincide con ningun promocion");
+	}
+	
+	private static Atraccion buscarAtraccion(final List<Atraccion> atracciones, final String nombreAtraccion) throws Exception {
+		
+		for(Atraccion atraccion : atracciones) {
+			if(atraccion.getNombre().equalsIgnoreCase(nombreAtraccion)) {
+				return atraccion;
+			}
+		}
+		
+		throw new Exception("No existe atraccion " + "'"+ nombreAtraccion + "'");
 	}
 }
