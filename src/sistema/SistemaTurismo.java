@@ -29,7 +29,6 @@ public class SistemaTurismo {
 
 	private static void generarResumen(final Usuario usuario)
 	{
-		int costoTotalItinerario = 0;
 		float duracionTotalItinerario = 0;
 		
 		System.out.println("Resumen de su itinerario:");
@@ -38,7 +37,6 @@ public class SistemaTurismo {
 		for (Atraccion atraccion : usuario.getItinerario())
 		{
 			System.out.println("\t- " + atraccion.getNombre());
-//			costoTotalItinerario =  costoTotalItinerario + atraccion.getCosto();
 			duracionTotalItinerario =  duracionTotalItinerario + atraccion.getTiempoEnRecorrer();
 		}
 		
@@ -49,7 +47,6 @@ public class SistemaTurismo {
 	
 	private static void escribirResumen(String nombreArchivo, Usuario usuario)
 	{
-		float costoTotalItinerario = 0;
 		float duracionTotalItinerario = 0;
 		
 		try {
@@ -61,19 +58,15 @@ public class SistemaTurismo {
 			for (Atraccion atraccion : usuario.getItinerario())
 			{
 				escritor.write("\t- " + atraccion.getNombre() + "\n");
-				costoTotalItinerario =+ atraccion.getCosto();
-				duracionTotalItinerario =+ atraccion.getTiempoEnRecorrer();
+				duracionTotalItinerario += atraccion.getTiempoEnRecorrer();
 			}
 			
 			escritor.write("Total de horas: " + duracionTotalItinerario + "\n");
-			escritor.write("Total de monedas: " + costoTotalItinerario + "\n");
+			escritor.write("Total de monedas: " + usuario.getCostoTotal() + "\n");
 			
 		    escritor.close();
 		} catch (IOException e) {
 		    e.printStackTrace();
-		}
-		finally {
-			
 		}
 	}
 
