@@ -8,6 +8,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import model.Usuario;
+import tipo.TipoAtraccion;
 import tipo.TipoPerfil;
 
 class ArchivoUsuario {
@@ -28,9 +29,12 @@ class ArchivoUsuario {
 				lineaScanner.useDelimiter(",\\s*"); 
 				
 				String nombre = lineaScanner.next();
-				String perfil = lineaScanner.next();
+//				String perfil = lineaScanner.next();
+				String preferencia = lineaScanner.next();
+				String presupuesto = lineaScanner.next();
+				String tiempoDisponible = lineaScanner.next();
 
-				Usuario usuario = crearUsuario(nombre,perfil);
+				Usuario usuario = crearUsuario(nombre, preferencia, presupuesto, tiempoDisponible);
 				usuarios.add(usuario);
 
 				lineaScanner.close();
@@ -46,25 +50,7 @@ class ArchivoUsuario {
 	}
 
 
-	private static Usuario crearUsuario(final String nombre, final String perfil) throws Exception {
-		if(TipoPerfil.FRODO.esPerfil(perfil))
-			return new Usuario(nombre,
-						TipoPerfil.FRODO.getPreferencia(),
-						TipoPerfil.FRODO.getPresupuesto(),
-						TipoPerfil.FRODO.getTiempo()
-					);
-		if(TipoPerfil.GALARDIEL.esPerfil(perfil))
-			return new Usuario(nombre,
-						TipoPerfil.GALARDIEL.getPreferencia(),
-						TipoPerfil.GALARDIEL.getPresupuesto(),
-						TipoPerfil.GALARDIEL.getTiempo()
-					);
-		if(TipoPerfil.SAM.esPerfil(perfil))
-			return new Usuario(nombre,
-						TipoPerfil.SAM.getPreferencia(),
-						TipoPerfil.SAM.getPresupuesto(),
-						TipoPerfil.SAM.getTiempo()
-					);
-		throw new Exception("No coincide con ningun perfil");
+	private static Usuario crearUsuario(final String nombre, String preferencia, String presupuesto, String tiempoDisponible) throws Exception {
+		return new Usuario(nombre, TipoAtraccion.valueOf(preferencia.toUpperCase()), Integer.valueOf(presupuesto), Float.valueOf(tiempoDisponible));
 	}
 }

@@ -38,11 +38,11 @@ public class SistemaTurismo {
 		for (Atraccion atraccion : usuario.getItinerario())
 		{
 			System.out.println("\t- " + atraccion.getNombre());
-			costoTotalItinerario =  costoTotalItinerario + atraccion.getCosto();
+//			costoTotalItinerario =  costoTotalItinerario + atraccion.getCosto();
 			duracionTotalItinerario =  duracionTotalItinerario + atraccion.getTiempoEnRecorrer();
 		}
 		
-		System.out.println("Total de monedas: " + costoTotalItinerario);
+		System.out.println("Total de monedas: " + usuario.getCostoTotal());
 		System.out.println("Total de horas: " + duracionTotalItinerario);
 		System.out.println("-------------------------------------------------------------------");
 	}

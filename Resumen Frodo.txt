@@ -1,0 +1,9 @@
+Resumen de compra para el usuario Frodo
+Atracciones adquiridas:
+	- Bosque Negro
+	- Mordor
+	- Lothlorien
+	- La Comarca
+	- Erebor
+Total de horas: 3.0
+Total de monedas: 12

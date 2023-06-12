@@ -12,6 +12,7 @@ public class Usuario {
 	private int presupuesto;
 	private float tiempoDisponible;
 	private List<Atraccion> itinerario;
+	private float costoTotal = 0;
 		
 	public Usuario(final String nombre, final TipoAtraccion preferencia, int presupuesto, float tiempoDisponible) {
 		this.nombre = nombre;
@@ -28,7 +29,7 @@ public class Usuario {
 	public List<Paquete> obternerPaquetesPreferidos(final List<Paquete> paquetes) {
 		final List<Paquete> paquetesPreferidos = new ArrayList<>();
 		for (Paquete paquete : paquetes) {
-			if (paquete.getNombre().equals(preferencia) && paquete.calcularCosto() <= presupuesto
+			if (paquete.getNombre().equals(preferencia) && paquete.calcularCostoConDescuento() <= presupuesto
 					&& paquete.calcularDuracion() <= tiempoDisponible) {
 				paquetesPreferidos.add(paquete);
 			}
@@ -70,15 +71,17 @@ public class Usuario {
 		presupuesto -= atraccion.getCosto();		
 		tiempoDisponible -= atraccion.getTiempoEnRecorrer();
 		atraccion.restarCupo();
+		costoTotal += atraccion.getCosto();
 	}
 	
 	public void agregarPaqueteAlItinerario(final Paquete paquete) {
 		itinerario.addAll(paquete.getAtracciones());
-		presupuesto -= paquete.calcularCosto();
+		presupuesto -= paquete.calcularCostoConDescuento();
 		tiempoDisponible -= paquete.calcularDuracion();
 		for (Atraccion atraccion : paquete.getAtracciones()) {
 			atraccion.restarCupo();
 		}
+		costoTotal += paquete.calcularCostoConDescuento();
 		
 	}
 
@@ -101,7 +104,13 @@ public class Usuario {
 	public TipoAtraccion getPreferencia() {
 		return preferencia;
 	}
-	
-	
+
+	public float getCostoTotal() {
+		return costoTotal;
+	}
+
+	public void setCostoTotal(float costoTotal) {
+		this.costoTotal = costoTotal;
+	}
 	
 }
