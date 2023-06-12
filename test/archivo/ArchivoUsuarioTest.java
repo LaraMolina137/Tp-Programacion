@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import model.Usuario;
 import tipo.TipoAtraccion;
-import tipo.TipoPerfil;
 
 class ArchivoUsuarioTest {
 	

@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 import model.Usuario;
 import tipo.TipoAtraccion;
-import tipo.TipoPerfil;
 
 class ArchivoUsuario {
 
