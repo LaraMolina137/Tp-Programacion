@@ -24,9 +24,9 @@ public class Atraccion {
 	        public int compare(Atraccion atraccion1, Atraccion atraccion2) {
 	            int resultado = Float.compare(atraccion1.getCosto(), atraccion2.getCosto());
 	            if (resultado == 0) {
-	                return Double.compare(atraccion1.getTiempoEnRecorrer(), atraccion2.getTiempoEnRecorrer());
+	                return Double.compare(atraccion1.getTiempoEnRecorrer(), atraccion2.getTiempoEnRecorrer())*-1;
 	            }
-	            return resultado;
+	            return resultado * -1;
 	        }
 	    };
 

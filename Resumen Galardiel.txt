@@ -1,6 +1,6 @@
 Resumen de compra para el usuario Galardiel
 Atracciones adquiridas:
-	- Abismo de Helm
 	- Minas Tirith
-Total de horas: 2.5
-Total de monedas: 5.0
+	- Lothlorien
+Total de horas: 1.0
+Total de monedas: 35.0

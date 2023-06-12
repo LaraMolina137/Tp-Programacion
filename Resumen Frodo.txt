@@ -2,11 +2,9 @@ Resumen de compra para el usuario Frodo
 Atracciones adquiridas:
 	- Bosque Negro
 	- Mordor
-	- Moria
 	- Lothlorien
 	- La Comarca
-	- Minas Tirith
-	- Abismo de Helm
 	- Erebor
-Total de horas: 3.0
-Total de monedas: 12.0
+	- Abismo de Helm
+Total de horas: 2.0
+Total de monedas: 5.0
