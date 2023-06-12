@@ -2,6 +2,8 @@ package model;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
@@ -12,9 +14,7 @@ public class PaqueteTest {
 
 	private static final Paquete PAQUETE = new Paquete(
 			TipoAtraccion.AVENTURA,
-			List.of(
-					new Atraccion("Moria", 10, 2, 6, TipoAtraccion.AVENTURA), 
-					new Atraccion("Mordor", 25, 3, 4, TipoAtraccion.AVENTURA)),
+			Arrays.asList(new Atraccion("Moria", 10, 2, 6, TipoAtraccion.AVENTURA),new Atraccion("Mordor", 25, 3, 4, TipoAtraccion.AVENTURA)),
 			new PromocionPorcentaje(20)
 			);
 	
@@ -29,18 +29,18 @@ public class PaqueteTest {
 	
 	@Test
 	public void calcularCostoTotalTest() {
-		int costoExpected = 35;
-		int costoActual = PAQUETE.calcularCosto();
+		float costoExpected = 35;
+		float costoActual = PAQUETE.calcularCosto();
 		
-		assertEquals(costoExpected,costoActual);
+		assertTrue(costoExpected == costoActual);
 	}
 	
 	@Test
 	public void calcularCostoTotalConDescuentoTest() {
-		int costoExpected = (int) (35 * 0.8);
-		int costoActual = PAQUETE.calcularCostoConDescuento();
+		float costoExpected = (float) (35 * 0.8);
+		float costoActual = PAQUETE.calcularCostoConDescuento();
 		
-		assertEquals(costoExpected,costoActual);
+		assertTrue(costoExpected == costoActual);
 	}
 
 }

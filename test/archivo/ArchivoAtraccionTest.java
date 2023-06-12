@@ -2,6 +2,7 @@ package archivo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ class ArchivoAtraccionTest {
 	@Test
 	void testReadFile() throws Exception {		
 		
-		List<Atraccion> expectedList = List.of( 
+		List<Atraccion> expectedList = Arrays.asList( 
 				new Atraccion("Moria", 10, 2, 6, TipoAtraccion.AVENTURA), 
 				new Atraccion("Minas Tirith", 5, (float) 2.5, 25, TipoAtraccion.PAISAJE),
 				new Atraccion("La Comarca", 3, (float) 6.5, 150, TipoAtraccion.DEGUSTACION),

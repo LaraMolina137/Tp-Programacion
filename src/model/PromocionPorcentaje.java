@@ -11,13 +11,13 @@ public class PromocionPorcentaje implements Promocion{
 	}
 	
 	@Override
-	public int aplicarDescuento(List<Atraccion> atracciones) {
+	public float aplicarDescuento(List<Atraccion> atracciones) {
 		int costoTotal = 0;
 		for (Atraccion atraccion : atracciones) {
 			costoTotal += atraccion.getCosto();
 		}
 		
-		return (int) (costoTotal - (costoTotal * (valorPorcentaje/100.0f)));
+		return costoTotal - (costoTotal * (valorPorcentaje/100.0f));
 	}
 
 }

@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class UsuarioTest {
 
 	private static final Usuario USUARIO = new Usuario("Juan Carlos", TipoAtraccion.AVENTURA, 10, 8);
 
-	private static final List<Atraccion> EXPECTED_ATRACCIONES = List.of( 
+	private static final List<Atraccion> EXPECTED_ATRACCIONES = Arrays.asList( 
 			new Atraccion("Moria", 10, 2, 6, TipoAtraccion.AVENTURA), 
 			new Atraccion("Minas Tirith", 5, (float) 2.5, 25, TipoAtraccion.PAISAJE),
 			new Atraccion("La Comarca", 3, (float) 6.5, 150, TipoAtraccion.DEGUSTACION),
@@ -25,10 +26,10 @@ public class UsuarioTest {
 	        new Atraccion("Erebor", 12, 3, 32, TipoAtraccion.PAISAJE),
 	        new Atraccion("Bosque Negro", 3, 4, 12, TipoAtraccion.AVENTURA));
 	
-	private static final List<Paquete> EXPECTED_PAQUETES = List.of(
+	private static final List<Paquete> EXPECTED_PAQUETES = Arrays.asList(
 			new Paquete(
 					TipoAtraccion.AVENTURA, 
-					List.of(
+					Arrays.asList(
 							new Atraccion("Bosque Negro", 3, 4, 12, TipoAtraccion.AVENTURA),
 							new Atraccion("Mordor", 25, 3, 4, TipoAtraccion.AVENTURA)
 							),
@@ -37,7 +38,7 @@ public class UsuarioTest {
 			
 			new Paquete(
 					TipoAtraccion.DEGUSTACION, 
-					List.of(
+					Arrays.asList(
 							new Atraccion("Lothlorien", 35, 1, 30, TipoAtraccion.DEGUSTACION),
 							new Atraccion("La Comarca", 3, (float) 6.5, 150, TipoAtraccion.DEGUSTACION)
 							),
@@ -45,7 +46,7 @@ public class UsuarioTest {
 					),
 			new Paquete(
 					TipoAtraccion.PAISAJE, 
-					List.of(
+					Arrays.asList(
 							new Atraccion("Minas Tirith", 5, (float) 2.5, 25, TipoAtraccion.PAISAJE),
 							new Atraccion("Abismo de Helm", 5, 2, 15, TipoAtraccion.PAISAJE)
 							),
@@ -64,7 +65,7 @@ public class UsuarioTest {
 	public void obternerAtraccionesPreferidosTest() {
 		List<Atraccion> atraccionesPref = USUARIO.obtenerAtraccionesPreferidas(EXPECTED_ATRACCIONES);
 		
-		List<Atraccion> prefEsperados = List.of(new Atraccion("Moria", 10, 2, 6, TipoAtraccion.AVENTURA),
+		List<Atraccion> prefEsperados = Arrays.asList(new Atraccion("Moria", 10, 2, 6, TipoAtraccion.AVENTURA),
 	    new Atraccion("Bosque Negro", 3, 4, 12, TipoAtraccion.AVENTURA));
 		
 		for (int i = 0; i < prefEsperados.size(); i++) {		
@@ -80,7 +81,7 @@ public class UsuarioTest {
 	public void obternerPaquetesPreferidosTest() {
 		List<Paquete> paquetesPref = USUARIO.obternerPaquetesPreferidos(EXPECTED_PAQUETES);
 		
-		assertEquals(List.of(), paquetesPref);
+		assertEquals(Arrays.asList(), paquetesPref);
 	}
 	
 	@Test
@@ -90,7 +91,7 @@ public class UsuarioTest {
 		
 		boolean atraccionEnItinerario = usuario.algunaAtraccionEstaEnItinerario(new Paquete(
 					TipoAtraccion.AVENTURA, 
-					List.of(
+					Arrays.asList(
 							new Atraccion("Bosque Negro", 3, 4, 12, TipoAtraccion.AVENTURA),
 							new Atraccion("Mordor", 25, 3, 4, TipoAtraccion.AVENTURA)
 							),
@@ -141,7 +142,7 @@ public class UsuarioTest {
 		
 		Paquete paquete = new Paquete(
 				TipoAtraccion.AVENTURA, 
-				List.of(
+				Arrays.asList(
 						new Atraccion("Bosque Negro", 3, 4, 12, TipoAtraccion.AVENTURA),
 						new Atraccion("NoMordor", 1, 3, 4, TipoAtraccion.AVENTURA)
 						),

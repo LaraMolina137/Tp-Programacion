@@ -11,7 +11,7 @@ public class PromocionAbsoluta implements Promocion{
 	}
 
 	@Override
-	public int aplicarDescuento(List<Atraccion> atracciones) {
+	public float aplicarDescuento(List<Atraccion> atracciones) {
 		return valorAbsoluto;
 	}
 	

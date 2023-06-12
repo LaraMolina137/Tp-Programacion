@@ -11,7 +11,7 @@ public class PromocionAXB implements Promocion{
 	}
 
 	@Override
-	public int aplicarDescuento(List<Atraccion> atracciones) {
+	public float aplicarDescuento(List<Atraccion> atracciones) {
 		int costoTotal = 0;
 		for (Atraccion atraccion : atracciones) {
 			costoTotal += atraccion.getCosto();

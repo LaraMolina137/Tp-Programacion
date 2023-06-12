@@ -9,12 +9,12 @@ public class Usuario {
 
 	private String nombre;
 	private TipoAtraccion preferencia;
-	private int presupuesto;
+	private float presupuesto;
 	private float tiempoDisponible;
 	private List<Atraccion> itinerario;
 	private float costoTotal = 0;
 		
-	public Usuario(final String nombre, final TipoAtraccion preferencia, int presupuesto, float tiempoDisponible) {
+	public Usuario(final String nombre, final TipoAtraccion preferencia, float presupuesto, float tiempoDisponible) {
 		this.nombre = nombre;
 		this.preferencia = preferencia;
 		this.presupuesto = presupuesto;
@@ -62,7 +62,7 @@ public class Usuario {
 		return itinerario.contains(atraccion); 
 	}
 	
-	public boolean alcanzaTiempoYCosto(final float tiempo, final int costo) {
+	public boolean alcanzaTiempoYCosto(final float tiempo, final float costo) {
 		return tiempoDisponible - tiempo >= 0 && presupuesto - costo >= 0;
 	}
 	
@@ -89,12 +89,12 @@ public class Usuario {
 		return nombre;
 	}
 
-	public List<Atraccion> getItinerario() {
-		return itinerario;
+	public float getPresupuesto() {
+		return presupuesto;
 	}
 
-	public int getPresupuesto() {
-		return presupuesto;
+	public void setPresupuesto(float presupuesto) {
+		this.presupuesto = presupuesto;
 	}
 
 	public float getTiempoDisponible() {
@@ -111,6 +111,10 @@ public class Usuario {
 
 	public void setCostoTotal(float costoTotal) {
 		this.costoTotal = costoTotal;
+	}
+
+	public List<Atraccion> getItinerario() {
+		return itinerario;
 	}
 	
 }

@@ -2,11 +2,13 @@ package archivo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import model.Usuario;
+import tipo.TipoAtraccion;
 import tipo.TipoPerfil;
 
 class ArchivoUsuarioTest {
@@ -25,10 +27,10 @@ class ArchivoUsuarioTest {
 	@Test
 	void testReadFile() throws Exception {		
 		
-		List<Usuario> expectedList = List.of(
-				new Usuario("Diego Martínez", TipoPerfil.FRODO.getPreferencia(), TipoPerfil.FRODO.getPresupuesto(), TipoPerfil.FRODO.getTiempo()),
-				new Usuario("Ana Herrera", TipoPerfil.GALARDIEL.getPreferencia(), TipoPerfil.GALARDIEL.getPresupuesto(), TipoPerfil.GALARDIEL.getTiempo()),
-				new Usuario("Laura Jiménez", TipoPerfil.GALARDIEL.getPreferencia(), TipoPerfil.GALARDIEL.getPresupuesto(), TipoPerfil.GALARDIEL.getTiempo())
+		List<Usuario> expectedList = Arrays.asList(
+				new Usuario("Frodo", TipoAtraccion.AVENTURA, 150, 70),
+				new Usuario("Galardiel", TipoAtraccion.PAISAJE, 100, 5),
+				new Usuario("Sam", TipoAtraccion.DEGUSTACION, 36, 8)
 		);
         
 		final List<Usuario> resultList = ArchivoUsuario.leerArchivo("usuarioTest");

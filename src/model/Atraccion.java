@@ -6,7 +6,7 @@ import java.util.Comparator;
 public class Atraccion {
 	
 	private String nombre;
-	private int costo;
+	private float costo;
 	private float tiempoEnRecorrer;
 	private int cupo;
 	private TipoAtraccion tipo;
@@ -22,7 +22,7 @@ public class Atraccion {
 	 public static final Comparator<Atraccion> ORDEN_COSTO_TIEMPO = new Comparator<Atraccion>() {
 	        @Override
 	        public int compare(Atraccion atraccion1, Atraccion atraccion2) {
-	            int resultado = Integer.compare(atraccion1.getCosto(), atraccion2.getCosto());
+	            int resultado = Float.compare(atraccion1.getCosto(), atraccion2.getCosto());
 	            if (resultado == 0) {
 	                return Double.compare(atraccion1.getTiempoEnRecorrer(), atraccion2.getTiempoEnRecorrer());
 	            }
@@ -34,7 +34,8 @@ public class Atraccion {
 		return nombre;
 	}
 
-	public int getCosto() {
+
+	public float getCosto() {
 		return costo;
 	}
 

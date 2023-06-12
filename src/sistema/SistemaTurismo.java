@@ -49,7 +49,7 @@ public class SistemaTurismo {
 	
 	private static void escribirResumen(String nombreArchivo, Usuario usuario)
 	{
-		int costoTotalItinerario = 0;
+		float costoTotalItinerario = 0;
 		float duracionTotalItinerario = 0;
 		
 		try {

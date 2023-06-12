@@ -23,7 +23,7 @@ public class Paquete {
 		return duracionTotal;
 	}
 
-	public int calcularCosto() {
+	public float calcularCosto() {
 		int costoTotal = 0;
 		for (Atraccion atraccion : atracciones) {
 			costoTotal += atraccion.getCosto();
@@ -31,7 +31,7 @@ public class Paquete {
 		return costoTotal;
 	}
 	
-	public int calcularCostoConDescuento() {
+	public float calcularCostoConDescuento() {
 		return promocion.aplicarDescuento(atracciones);
 	}
 

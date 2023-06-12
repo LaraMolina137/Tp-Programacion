@@ -3,6 +3,7 @@ package model;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
@@ -13,16 +14,16 @@ public class PromocionTest {
 	
 	private static final int COSTO = 30;
 	
-	private static final List<Atraccion> ATRACCIONES = List.of(new Atraccion("Moria", COSTO, 2, 0, TipoAtraccion.AVENTURA));
+	private static final List<Atraccion> ATRACCIONES = Arrays.asList((new Atraccion("Moria", COSTO, 2, 0, TipoAtraccion.AVENTURA)));
 
 	
 	@Test
 	public void promocionAbsolutaTest() {
 		PromocionAbsoluta promocion = new PromocionAbsoluta(10);
 		
-		int costoConDescuento = promocion.aplicarDescuento(ATRACCIONES);
+		float costoConDescuento = promocion.aplicarDescuento(ATRACCIONES);
 		
-		assertEquals(10, costoConDescuento);
+		assertTrue(10 == costoConDescuento);
 	}
 
 	
@@ -30,11 +31,11 @@ public class PromocionTest {
 	public void promocionPorcetajeTest() {
 		PromocionPorcentaje promocion = new PromocionPorcentaje(20);
 		
-		int costoConDescuento = promocion.aplicarDescuento(ATRACCIONES);
+		float costoConDescuento = promocion.aplicarDescuento(ATRACCIONES);
 		
-		int costoExpected = 24;
+		float costoExpected = 24;
 	
-		assertEquals(costoExpected, costoConDescuento);
+		assertTrue(costoExpected == costoConDescuento);
 	}
 	
 
@@ -43,9 +44,9 @@ public class PromocionTest {
 		PromocionAXB promocion = new PromocionAXB(new Atraccion("Mordor", 25, 3, 4, TipoAtraccion.AVENTURA));
 		List<Atraccion> atracciones = new ArrayList<Atraccion>(ATRACCIONES);
 		
-		int costoConDescuento = promocion.aplicarDescuento(atracciones);
+		float costoConDescuento = promocion.aplicarDescuento(atracciones);
 		
-		assertEquals(COSTO, costoConDescuento);
+		assertTrue(COSTO == costoConDescuento);
 	}
 	
 	@Test
