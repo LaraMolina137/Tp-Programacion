@@ -13,11 +13,18 @@ public class PromocionAXB implements Promocion{
 	@Override
 	public float aplicarDescuento(List<Atraccion> atracciones) {
 		int costoTotal = 0;
-		for (Atraccion atraccion : atracciones) {
-			costoTotal += atraccion.getCosto();
-		}
+		boolean siEstaAtraccionGratis = false;
 		
-		atracciones.add(atraccionGratis);
+		for (Atraccion atraccion : atracciones) {
+			if(!atraccion.equals(atraccionGratis))
+				costoTotal += atraccion.getCosto();
+			else 
+				siEstaAtraccionGratis = true;	
+		}	
+		
+		if(!siEstaAtraccionGratis)
+			atracciones.add(atraccionGratis);
+		
 		return costoTotal;
 	}
 
