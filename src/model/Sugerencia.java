@@ -59,6 +59,9 @@ public class Sugerencia {
 						usuario.agregarPaqueteAlItinerario(paquete);
 					}
 					
+					System.out.println("-------------------------------------------------------------------");
+					System.out.println("");
+					
 				}
 				
 			}
