@@ -4,6 +4,8 @@ import java.util.List;
 import tipo.TipoAtraccion;
 
 public class Paquete {
+	private static final int INICIO_CADENA = 0;
+	private static final int CANT_CARACTERES = 2;
 	private TipoAtraccion nombre;
 	private List<Atraccion> atracciones;
 	private Promocion promocion;
@@ -61,7 +63,7 @@ public class Paquete {
 
 		}
 
-		nombresAtracciones = nombresAtracciones.substring(0, nombresAtracciones.length() - 2);
+		nombresAtracciones = nombresAtracciones.substring(INICIO_CADENA, nombresAtracciones.length() - CANT_CARACTERES);
 
 		return "[ " + nombresAtracciones + " ]";
 	}

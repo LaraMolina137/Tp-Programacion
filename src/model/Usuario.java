@@ -7,6 +7,8 @@ import tipo.TipoAtraccion;
 
 public class Usuario {
 
+	private static final int SIN_TIEMPO = 0;
+	private static final int SIN_PRESUPUESTO = 0;
 	private String nombre;
 	private TipoAtraccion preferencia;
 	private float presupuesto;
@@ -23,7 +25,7 @@ public class Usuario {
 	}
 
 	public boolean tieneTiempoYPresupuesto() {
-		return presupuesto > 0 && tiempoDisponible > 0;
+		return presupuesto > SIN_PRESUPUESTO && tiempoDisponible > SIN_TIEMPO;
 	}
 
 	public List<Paquete> obternerPaquetesPreferidos(final List<Paquete> paquetes) {
@@ -63,7 +65,7 @@ public class Usuario {
 	}
 
 	public boolean alcanzaTiempoYCosto(final float tiempo, final float costo) {
-		return tiempoDisponible - tiempo >= 0 && presupuesto - costo >= 0;
+		return tiempoDisponible - tiempo >= SIN_TIEMPO && presupuesto - costo >= SIN_PRESUPUESTO;
 	}
 
 	public void agregarAtraccionAlItinerario(final Atraccion atraccion) {

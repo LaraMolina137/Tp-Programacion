@@ -5,6 +5,10 @@ import java.util.Comparator;
 
 public class Atraccion {
 
+	private static final int UNIDAD_CUPO = 1;
+	private static final int SIN_CUPO = 0;
+	private static final int COMPARACION_IGUAL = 0;
+	private static final int INVERSO = -1;
 	private String nombre;
 	private float costo;
 	private float tiempoEnRecorrer;
@@ -23,10 +27,10 @@ public class Atraccion {
 		@Override
 		public int compare(Atraccion atraccion1, Atraccion atraccion2) {
 			int resultado = Float.compare(atraccion1.getCosto(), atraccion2.getCosto());
-			if (resultado == 0) {
-				return Double.compare(atraccion1.getTiempoEnRecorrer(), atraccion2.getTiempoEnRecorrer()) * -1;
+			if (resultado == COMPARACION_IGUAL) {
+				return Double.compare(atraccion1.getTiempoEnRecorrer(), atraccion2.getTiempoEnRecorrer()) * INVERSO;
 			}
-			return resultado * -1;
+			return resultado * INVERSO;
 		}
 	};
 
@@ -51,11 +55,11 @@ public class Atraccion {
 	}
 
 	public boolean hayCupos() {
-		return cupo > 0;
+		return cupo > SIN_CUPO;
 	}
 
 	public void restarCupo() {
-		cupo -= 1;
+		cupo -= UNIDAD_CUPO;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 public class PromocionPorcentaje implements Promocion {
 
+	private static final float PORCENTAJE_TOTAL = 100.0f;
 	private int valorPorcentaje;
 
 	public PromocionPorcentaje(int valorPorcentaje) {
@@ -17,7 +18,7 @@ public class PromocionPorcentaje implements Promocion {
 			costoTotal += atraccion.getCosto();
 		}
 
-		return costoTotal - (costoTotal * (valorPorcentaje / 100.0f));
+		return costoTotal - (costoTotal * (valorPorcentaje / PORCENTAJE_TOTAL));
 	}
 
 }
