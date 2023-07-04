@@ -16,14 +16,16 @@ public class PromocionAXB implements Promocion {
 		boolean siEstaAtraccionGratis = false;
 
 		for (Atraccion atraccion : atracciones) {
-			if (!atraccion.equals(atraccionGratis))
+			if (!atraccion.equals(atraccionGratis)) {
 				costoTotal += atraccion.getCosto();
-			else
+			} else {
 				siEstaAtraccionGratis = true;
+			}
 		}
 
-		if (!siEstaAtraccionGratis)
+		if (!siEstaAtraccionGratis) {
 			atracciones.add(atraccionGratis);
+		}
 
 		return costoTotal;
 	}
