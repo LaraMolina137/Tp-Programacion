@@ -43,10 +43,6 @@ public class Paquete {
 		return atracciones;
 	}
 
-	public void setNombre(TipoAtraccion nombre) {
-		this.nombre = nombre;
-	}
-
 	public boolean hayCuposEnPaquete() {
 		for (Atraccion atraccion : atracciones) {
 			if (!atraccion.hayCupos()) {

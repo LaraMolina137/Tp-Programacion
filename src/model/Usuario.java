@@ -93,10 +93,6 @@ public class Usuario {
 		return presupuesto;
 	}
 
-	public void setPresupuesto(float presupuesto) {
-		this.presupuesto = presupuesto;
-	}
-
 	public float getTiempoDisponible() {
 		return tiempoDisponible;
 	}
@@ -107,10 +103,6 @@ public class Usuario {
 
 	public float getCostoTotal() {
 		return costoTotal;
-	}
-
-	public void setCostoTotal(float costoTotal) {
-		this.costoTotal = costoTotal;
 	}
 
 	public List<Atraccion> getItinerario() {

@@ -46,10 +46,6 @@ public class Atraccion {
 		return cupo;
 	}
 
-	public void setCupo(int cupo) {
-		this.cupo = cupo;
-	}
-
 	public TipoAtraccion getTipo() {
 		return tipo;
 	}
