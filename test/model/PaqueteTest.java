@@ -20,7 +20,6 @@ public class PaqueteTest {
 		float duracionExpected = 5;
 		float duracionActual = PAQUETE.calcularDuracion();
 
-		// porque assertEquals está deprecado para float
 		assertTrue(duracionExpected == duracionActual);
 	}
 

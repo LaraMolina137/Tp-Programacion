@@ -122,7 +122,6 @@ public class Sugerencia {
 			respuesta = scanner.nextLine();
 		} while (!respuesta.toUpperCase().equals("S") && !respuesta.toUpperCase().equals("N"));
 
-		// scanner.close();
 		return respuesta.equalsIgnoreCase("S");
 
 	}

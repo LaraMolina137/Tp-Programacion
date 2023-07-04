@@ -28,7 +28,6 @@ class ArchivoUsuario {
 				lineaScanner.useDelimiter(",\\s*");
 
 				String nombre = lineaScanner.next();
-//				String perfil = lineaScanner.next();
 				String preferencia = lineaScanner.next();
 				String presupuesto = lineaScanner.next();
 				String tiempoDisponible = lineaScanner.next();
