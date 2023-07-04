@@ -13,7 +13,7 @@ public class Usuario {
 	private float tiempoDisponible;
 	private List<Atraccion> itinerario;
 	private float costoTotal = 0;
-		
+
 	public Usuario(final String nombre, final TipoAtraccion preferencia, float presupuesto, float tiempoDisponible) {
 		this.nombre = nombre;
 		this.preferencia = preferencia;
@@ -21,11 +21,11 @@ public class Usuario {
 		this.tiempoDisponible = tiempoDisponible;
 		this.itinerario = new ArrayList<>();
 	}
-	
+
 	public boolean tieneTiempoYPresupuesto() {
 		return presupuesto > 0 && tiempoDisponible > 0;
 	}
-	
+
 	public List<Paquete> obternerPaquetesPreferidos(final List<Paquete> paquetes) {
 		final List<Paquete> paquetesPreferidos = new ArrayList<>();
 		for (Paquete paquete : paquetes) {
@@ -36,44 +36,44 @@ public class Usuario {
 		}
 		return paquetesPreferidos;
 	}
-	
-	public List<Atraccion> obtenerAtraccionesPreferidas(final List<Atraccion> atracciones){
-	 final List<Atraccion> atraccionesPreferidas = new ArrayList<>();
-	 for (Atraccion atraccion : atracciones) {
-		 if(atraccion.getTipo().equals(preferencia) && atraccion.getCosto() <= presupuesto
-				 && atraccion.getTiempoEnRecorrer() <= tiempoDisponible) {
-			 atraccionesPreferidas.add(atraccion);
-		 }
-	 }
-	 
-	 return atraccionesPreferidas;
+
+	public List<Atraccion> obtenerAtraccionesPreferidas(final List<Atraccion> atracciones) {
+		final List<Atraccion> atraccionesPreferidas = new ArrayList<>();
+		for (Atraccion atraccion : atracciones) {
+			if (atraccion.getTipo().equals(preferencia) && atraccion.getCosto() <= presupuesto
+					&& atraccion.getTiempoEnRecorrer() <= tiempoDisponible) {
+				atraccionesPreferidas.add(atraccion);
+			}
+		}
+
+		return atraccionesPreferidas;
 	}
-	
+
 	public boolean algunaAtraccionEstaEnItinerario(final Paquete paquete) {
-		for(Atraccion atraccion : paquete.getAtracciones()) {
-			if(atraccionEstaEnItinerario(atraccion))
+		for (Atraccion atraccion : paquete.getAtracciones()) {
+			if (atraccionEstaEnItinerario(atraccion))
 				return true;
 		}
-		
+
 		return false;
 	}
-	
+
 	public boolean atraccionEstaEnItinerario(final Atraccion atraccion) {
-		return itinerario.contains(atraccion); 
+		return itinerario.contains(atraccion);
 	}
-	
+
 	public boolean alcanzaTiempoYCosto(final float tiempo, final float costo) {
 		return tiempoDisponible - tiempo >= 0 && presupuesto - costo >= 0;
 	}
-	
+
 	public void agregarAtraccionAlItinerario(final Atraccion atraccion) {
 		itinerario.add(atraccion);
-		presupuesto -= atraccion.getCosto();		
+		presupuesto -= atraccion.getCosto();
 		tiempoDisponible -= atraccion.getTiempoEnRecorrer();
 		atraccion.restarCupo();
 		costoTotal += atraccion.getCosto();
 	}
-	
+
 	public void agregarPaqueteAlItinerario(final Paquete paquete) {
 		itinerario.addAll(paquete.getAtracciones());
 		presupuesto -= paquete.calcularCostoConDescuento();
@@ -82,7 +82,7 @@ public class Usuario {
 			atraccion.restarCupo();
 		}
 		costoTotal += paquete.calcularCostoConDescuento();
-		
+
 	}
 
 	public String getNombre() {
@@ -116,5 +116,5 @@ public class Usuario {
 	public List<Atraccion> getItinerario() {
 		return itinerario;
 	}
-	
+
 }

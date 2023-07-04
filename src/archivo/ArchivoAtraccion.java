@@ -25,8 +25,8 @@ class ArchivoAtraccion {
 				String linea = scanner.nextLine();
 
 				Scanner lineaScanner = new Scanner(linea);
-				lineaScanner.useDelimiter(",\\s*"); 
-				
+				lineaScanner.useDelimiter(",\\s*");
+
 				String nombre = lineaScanner.next();
 				int costo = lineaScanner.nextInt();
 				float tiempoEnRecorrer = Float.parseFloat(lineaScanner.next());

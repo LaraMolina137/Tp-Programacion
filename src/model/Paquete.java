@@ -30,7 +30,7 @@ public class Paquete {
 		}
 		return costoTotal;
 	}
-	
+
 	public float calcularCostoConDescuento() {
 		return promocion.aplicarDescuento(atracciones);
 	}
@@ -38,7 +38,7 @@ public class Paquete {
 	public TipoAtraccion getNombre() {
 		return nombre;
 	}
-	
+
 	public List<Atraccion> getAtracciones() {
 		return atracciones;
 	}
@@ -46,10 +46,10 @@ public class Paquete {
 	public void setNombre(TipoAtraccion nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public boolean hayCuposEnPaquete() {
-		for(Atraccion atraccion : atracciones) {
-			if(!atraccion.hayCupos()) {
+		for (Atraccion atraccion : atracciones) {
+			if (!atraccion.hayCupos()) {
 				return false;
 			}
 		}
@@ -59,16 +59,15 @@ public class Paquete {
 	@Override
 	public String toString() {
 		String nombresAtracciones = "";
-		
+
 		for (Atraccion atraccion : atracciones) {
-			nombresAtracciones += atraccion.getNombre() + ", " ;
-			
+			nombresAtracciones += atraccion.getNombre() + ", ";
+
 		}
-		
-		nombresAtracciones = nombresAtracciones.substring(0, nombresAtracciones.length()-2);
-	
+
+		nombresAtracciones = nombresAtracciones.substring(0, nombresAtracciones.length() - 2);
+
 		return "[ " + nombresAtracciones + " ]";
 	}
-	
 
 }

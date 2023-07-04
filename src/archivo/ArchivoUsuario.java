@@ -13,7 +13,7 @@ import tipo.TipoAtraccion;
 class ArchivoUsuario {
 
 	public static List<Usuario> leerArchivo(String nombreArchivo) throws Exception {
-		List<Usuario> usuarios  = new ArrayList<>();
+		List<Usuario> usuarios = new ArrayList<>();
 		Scanner scanner = null;
 
 		try {
@@ -22,11 +22,11 @@ class ArchivoUsuario {
 			scanner.useLocale(new Locale("es_AR"));
 
 			while (scanner.hasNextLine()) {
-			    String linea = scanner.nextLine();
+				String linea = scanner.nextLine();
 
 				Scanner lineaScanner = new Scanner(linea);
-				lineaScanner.useDelimiter(",\\s*"); 
-				
+				lineaScanner.useDelimiter(",\\s*");
+
 				String nombre = lineaScanner.next();
 //				String perfil = lineaScanner.next();
 				String preferencia = lineaScanner.next();
@@ -48,8 +48,9 @@ class ArchivoUsuario {
 		return usuarios;
 	}
 
-
-	private static Usuario crearUsuario(final String nombre, String preferencia, String presupuesto, String tiempoDisponible) throws Exception {
-		return new Usuario(nombre, TipoAtraccion.valueOf(preferencia.toUpperCase()), Integer.valueOf(presupuesto), Float.valueOf(tiempoDisponible));
+	private static Usuario crearUsuario(final String nombre, String preferencia, String presupuesto,
+			String tiempoDisponible) throws Exception {
+		return new Usuario(nombre, TipoAtraccion.valueOf(preferencia.toUpperCase()), Integer.valueOf(presupuesto),
+				Float.valueOf(tiempoDisponible));
 	}
 }

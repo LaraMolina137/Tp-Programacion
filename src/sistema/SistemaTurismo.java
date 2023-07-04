@@ -8,65 +8,60 @@ import archivo.Archivo;
 import model.*;
 
 public class SistemaTurismo {
-	
+
 	public static void ejecutarSistema() throws Exception {
-		Archivo archivo= new Archivo();
-		
+		Archivo archivo = new Archivo();
+
 		List<Atraccion> atracciones = archivo.getAtracciones();
 		List<Usuario> usuarios = archivo.getUsuarios();
 		List<Paquete> paquetes = archivo.getPaquetes();
 
-		for (Usuario usuario : usuarios)
-		{
+		for (Usuario usuario : usuarios) {
 			System.out.println("Nombre del visitante: " + usuario.getNombre());
 			System.out.println("");
 			Sugerencia.sugerir(usuario, paquetes, atracciones);
-			
+
 			generarResumen(usuario);
 			escribirResumen("Resumen " + usuario.getNombre() + ".txt", usuario);
 		}
 	}
 
-	private static void generarResumen(final Usuario usuario)
-	{
+	private static void generarResumen(final Usuario usuario) {
 		float duracionTotalItinerario = 0;
-		
+
 		System.out.println("Resumen de su itinerario:");
 		System.out.println("Atracciones a realizar:");
-		
-		for (Atraccion atraccion : usuario.getItinerario())
-		{
+
+		for (Atraccion atraccion : usuario.getItinerario()) {
 			System.out.println("\t- " + atraccion.getNombre());
-			duracionTotalItinerario =  duracionTotalItinerario + atraccion.getTiempoEnRecorrer();
+			duracionTotalItinerario = duracionTotalItinerario + atraccion.getTiempoEnRecorrer();
 		}
-		
+
 		System.out.println("Total de monedas: " + usuario.getCostoTotal());
 		System.out.println("Total de horas: " + duracionTotalItinerario);
 		System.out.println("-------------------------------------------------------------------");
 	}
-	
-	private static void escribirResumen(String nombreArchivo, Usuario usuario)
-	{
+
+	private static void escribirResumen(String nombreArchivo, Usuario usuario) {
 		float duracionTotalItinerario = 0;
-		
+
 		try {
 			FileWriter escritor = new FileWriter(nombreArchivo);
-			
+
 			escritor.write("Resumen de compra para el usuario " + usuario.getNombre() + "\n");
 			escritor.write("Atracciones adquiridas:\n");
-			
-			for (Atraccion atraccion : usuario.getItinerario())
-			{
+
+			for (Atraccion atraccion : usuario.getItinerario()) {
 				escritor.write("\t- " + atraccion.getNombre() + "\n");
 				duracionTotalItinerario += atraccion.getTiempoEnRecorrer();
 			}
-			
+
 			escritor.write("Total de horas: " + duracionTotalItinerario + "\n");
 			escritor.write("Total de monedas: " + usuario.getCostoTotal() + "\n");
-			
-		    escritor.close();
+
+			escritor.close();
 		} catch (IOException e) {
-		    e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 

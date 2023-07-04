@@ -11,7 +11,7 @@ public class Archivo {
 	private List<Usuario> usuarios;
 	private List<Atraccion> atracciones;
 	private List<Paquete> paquetes;
-	
+
 	public Archivo() throws Exception {
 		cargarArchivos();
 	}

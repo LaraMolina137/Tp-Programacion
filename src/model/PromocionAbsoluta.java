@@ -2,10 +2,10 @@ package model;
 
 import java.util.List;
 
-public class PromocionAbsoluta implements Promocion{
+public class PromocionAbsoluta implements Promocion {
 
 	private int valorAbsoluto;
-	
+
 	public PromocionAbsoluta(int valorAbsoluto) {
 		this.valorAbsoluto = valorAbsoluto;
 	}
@@ -14,6 +14,5 @@ public class PromocionAbsoluta implements Promocion{
 	public float aplicarDescuento(List<Atraccion> atracciones) {
 		return valorAbsoluto;
 	}
-	
-	
+
 }
